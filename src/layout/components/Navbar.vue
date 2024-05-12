@@ -17,7 +17,7 @@
           @clear="dynamicClearEvent"
         >
           <el-option v-for="item in tenantList" :key="item.tenantId" :label="item.companyName" :value="item.tenantId"> </el-option>
-          <template #prefix><svg-icon icon-class="company" class="el-input__icon input-icon" /></template>
+          <template #prefix><svg-icon icon-class="company" /></template>
         </el-select>
 
         <!-- <header-search id="header-search" class="right-menu-item" /> -->

@@ -10,7 +10,6 @@ module.exports = {
     'plugin:vue/vue3-essential',
     'plugin:@typescript-eslint/recommended',
     './.eslintrc-auto-import.json',
-    'plugin:prettier/recommended'
   ],
   parserOptions: {
     ecmaVersion: '2020',
@@ -19,10 +18,13 @@ module.exports = {
   },
   plugins: ['vue', '@typescript-eslint'],
   rules: {
+    /*允许<template>标签中没有标签*/
+    "vue/valid-template-root": "off",
     'vue/multi-word-component-names': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'vue/no-v-model-argument': 'off',
+    "@typescript-eslint/no-unused-vars": "off",
     '@typescript-eslint/ban-types': [
       'error',
       {

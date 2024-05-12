@@ -1,4 +1,4 @@
-import { createWebHistory, createRouter, RouteOption } from 'vue-router';
+import {createWebHistory, createRouter, RouteOption} from 'vue-router';
 /* Layout */
 import Layout from '@/layout/index.vue';
 
@@ -16,12 +16,12 @@ import Layout from '@/layout/index.vue';
  * roles: ['admin', 'common']       // 访问路由的角色权限
  * permissions: ['a:a:a', 'b:b:b']  // 访问路由的菜单权限
  * meta : {
-    noCache: true                   // 如果设置为true，则不会被 <keep-alive> 缓存(默认 false)
-    title: 'title'                  // 设置该路由在侧边栏和面包屑中展示的名字
-    icon: 'svg-name'                // 设置该路由的图标，对应路径src/assets/icons/svg
-    breadcrumb: false               // 如果设置为false，则不会在breadcrumb面包屑中显示
-    activeMenu: '/system/user'      // 当路由设置了该属性，则会高亮相对应的侧边栏。
-  }
+ noCache: true                   // 如果设置为true，则不会被 <keep-alive> 缓存(默认 false)
+ title: 'title'                  // 设置该路由在侧边栏和面包屑中展示的名字
+ icon: 'svg-name'                // 设置该路由的图标，对应路径src/assets/icons/svg
+ breadcrumb: false               // 如果设置为false，则不会在breadcrumb面包屑中显示
+ activeMenu: '/system/user'      // 当路由设置了该属性，则会高亮相对应的侧边栏。
+ }
  */
 
 // 公共路由
@@ -44,12 +44,12 @@ export const constantRoutes: RouteOption[] = [
   },
   {
     path: '/login',
-    component: () => import('@/views/login.vue'),
+    component: () => import('@/views/auth/login/index.vue'),
     hidden: true
   },
   {
     path: '/register',
-    component: () => import('@/views/register.vue'),
+    component: () => import('@/views/auth/register/index.vue'),
     hidden: true
   },
   {
@@ -71,7 +71,7 @@ export const constantRoutes: RouteOption[] = [
         path: '/index',
         component: () => import('@/views/index.vue'),
         name: 'Index',
-        meta: { title: '首页', icon: 'dashboard', affix: true }
+        meta: {title: '首页', icon: 'dashboard', affix: true}
       }
     ]
   },
@@ -85,7 +85,7 @@ export const constantRoutes: RouteOption[] = [
         path: 'profile',
         component: () => import('@/views/system/user/profile/index.vue'),
         name: 'Profile',
-        meta: { title: '个人中心', icon: 'user' }
+        meta: {title: '个人中心', icon: 'user'}
       }
     ]
   }
@@ -103,7 +103,7 @@ export const dynamicRoutes: RouteOption[] = [
         path: 'role/:userId(\\d+)',
         component: () => import('@/views/system/user/authRole.vue'),
         name: 'AuthRole',
-        meta: { title: '分配角色', activeMenu: '/system/user', icon: '' }
+        meta: {title: '分配角色', activeMenu: '/system/user', icon: ''}
       }
     ]
   },
@@ -117,7 +117,7 @@ export const dynamicRoutes: RouteOption[] = [
         path: 'user/:roleId(\\d+)',
         component: () => import('@/views/system/role/authUser.vue'),
         name: 'AuthUser',
-        meta: { title: '分配用户', activeMenu: '/system/role', icon: '' }
+        meta: {title: '分配用户', activeMenu: '/system/role', icon: ''}
       }
     ]
   },
@@ -131,7 +131,7 @@ export const dynamicRoutes: RouteOption[] = [
         path: 'index/:dictId(\\d+)',
         component: () => import('@/views/system/dict/data.vue'),
         name: 'Data',
-        meta: { title: '字典数据', activeMenu: '/system/dict', icon: '' }
+        meta: {title: '字典数据', activeMenu: '/system/dict', icon: ''}
       }
     ]
   },
@@ -159,7 +159,7 @@ export const dynamicRoutes: RouteOption[] = [
         path: 'index/:tableId(\\d+)',
         component: () => import('@/views/tool/gen/editTable.vue'),
         name: 'GenEdit',
-        meta: { title: '修改生成配置', activeMenu: '/tool/gen', icon: '' }
+        meta: {title: '修改生成配置', activeMenu: '/tool/gen', icon: ''}
       }
     ]
   }
@@ -176,7 +176,7 @@ const router = createRouter({
     if (savedPosition) {
       return savedPosition;
     } else {
-      return { top: 0 };
+      return {top: 0};
     }
   }
 });

@@ -1,19 +1,19 @@
-import type { ComponentInternalInstance as ComponentInstance, PropType as VuePropType } from 'vue';
+import type {ComponentInternalInstance as ComponentInstance, PropType as VuePropType} from 'vue'
 
 declare global {
   /** vue Instance */
-  declare type ComponentInternalInstance = ComponentInstance;
+  declare type ComponentInternalInstance = ComponentInstance
   /**vue */
-  declare type PropType<T> = VuePropType<T>;
+  declare type PropType<T> = VuePropType<T>
 
   /**
    * 界面字段隐藏属性
    */
   declare interface FieldOption {
-    key: number;
-    label: string;
-    visible: boolean;
-    children?: Array<FieldOption>;
+    key: number
+    label: string
+    visible: boolean
+    children?: Array<FieldOption>
   }
 
   /**
@@ -23,19 +23,19 @@ declare global {
     /**
      * 弹窗标题
      */
-    title?: string;
+    title?: string
     /**
      * 是否显示
      */
-    visible: boolean;
+    visible: boolean
   }
 
   declare interface UploadOption {
     /** 设置上传的请求头部 */
-    headers: { [key: string]: any };
+    headers: { [key: string]: any }
 
     /** 上传的地址 */
-    url: string;
+    url: string
   }
 
   /**
@@ -43,31 +43,32 @@ declare global {
    */
   declare interface ImportOption extends UploadOption {
     /** 是否显示弹出层 */
-    open: boolean;
+    open: boolean
     /** 弹出层标题 */
-    title: string;
+    title: string
     /** 是否禁用上传 */
-    isUploading: boolean;
+    isUploading: boolean
 
     /** 其他参数 */
-    [key: string]: any;
+    [key: string]: any
   }
+
   /**
    * 字典数据  数据配置
    */
   declare interface DictDataOption {
-    label: string;
-    value: string;
-    elTagType?: ElTagType;
-    elTagClass?: string;
+    label: string
+    value: string
+    elTagType?: ElTagType
+    elTagClass?: string
   }
 
   declare interface BaseEntity {
-    createBy?: any;
-    createDept?: any;
-    createTime?: string;
-    updateBy?: any;
-    updateTime?: any;
+    createBy?: any
+    createDept?: any
+    createTime?: string
+    updateBy?: any
+    updateTime?: any
   }
 
   /**
@@ -76,16 +77,21 @@ declare global {
    * D : 查询参数
    */
   declare interface PageData<T, D> {
-    form: T;
-    queryParams: D;
-    rules: ElFormRules;
+    form: T
+    queryParams: D
+    rules: ElFormRules
   }
+
   /**
    * 分页查询参数
    */
   declare interface PageQuery {
-    pageNum: number;
-    pageSize: number;
+    pageNum: number
+    pageSize: number
+  }
+
+  declare module 'trianglify' {
+    export default any;
   }
 }
-export {};
+export {}
