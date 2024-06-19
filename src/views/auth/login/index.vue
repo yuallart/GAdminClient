@@ -113,7 +113,12 @@
     <m-verification v-model="visibleDialog" :result-method="handleVerify"></m-verification>
     <!--  底部  -->
     <div class="bottom-text-box">
-      <span>Copyright © 2018-2023 疯狂的狮子Li All Rights Reserved.</span>
+      <span>
+        我已阅读并同意&nbsp;
+        <el-text class="mx-1" type="success">用户协议</el-text>
+        &nbsp;和&nbsp;
+        <el-text class="mx-1" type="success">隐私协议</el-text>
+      </span>
     </div>
   </div>
 </template>
@@ -125,9 +130,8 @@ import {useUserStore} from '@/store/modules/user';
 import {LoginData, TenantVO} from '@/api/types';
 import {HttpStatus} from "@/enums/RespEnum";
 import Trianglify from 'trianglify'
-import {ElMessage} from 'element-plus'
+import {ElMessage, ElLoading, ElText} from 'element-plus'
 import MVerification from "@/components/MVerification/index.vue"
-import {ElLoading} from 'element-plus'
 
 type loginIconType = {
   icon: string,
@@ -148,7 +152,7 @@ const loginRef = ref<ElFormInstance>();
 const tenantList = ref<TenantVO[]>([]);
 const visibleDialog = ref<boolean>(false)
 const loginForm = ref<LoginData>({
-  tenantId: '000000',
+  tenantId: '',
   username: 'admin',
   password: 'admin123',
   code: '',
@@ -231,6 +235,7 @@ const toHome = async () => {
     text: 'Loading',
     background: 'rgba(0, 0, 0, 0.7)',
   })
+  console.log('loginForm===', loginForm)
   userStore.login(loginForm.value).then(res => {
     setTimeout(() => {
       router.push({path: redirect.value || '/'});

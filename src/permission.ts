@@ -1,16 +1,20 @@
-import { to as tos } from 'await-to-js';
+import {to as tos} from 'await-to-js';
 import router from './router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-import { getToken } from '@/utils/auth';
-import { isHttp } from '@/utils/validate';
-import { isRelogin } from '@/utils/request';
+import {getToken} from '@/utils/auth';
+import {isHttp} from '@/utils/validate';
+import {isRelogin} from '@/utils/request';
 import useUserStore from '@/store/modules/user';
 import useSettingsStore from '@/store/modules/settings';
 import usePermissionStore from '@/store/modules/permission';
 
-NProgress.configure({ showSpinner: false });
+NProgress.configure({showSpinner: false});
 const whiteList = ['/login', '/register', '/social-callback'];
+
+if (import.meta.env.VITE_APP_OERMISSION === '0' && import.meta.env.VITE_APP_ENV === 'development') {
+  whiteList.push('/test')
+}
 
 router.beforeEach(async (to, from, next) => {
   NProgress.start();
@@ -18,7 +22,7 @@ router.beforeEach(async (to, from, next) => {
     to.meta.title && useSettingsStore().setTitle(to.meta.title);
     /* has token*/
     if (to.path === '/login') {
-      next({ path: '/' });
+      next({path: '/'});
       NProgress.done();
     } else if (whiteList.indexOf(to.path as string) !== -1) {
       next();
@@ -30,7 +34,7 @@ router.beforeEach(async (to, from, next) => {
         if (err) {
           await useUserStore().logout();
           ElMessage.error(err);
-          next({ path: '/' });
+          next({path: '/'});
         } else {
           isRelogin.show = false;
           const accessRoutes = await usePermissionStore().generateRoutes();
@@ -40,7 +44,14 @@ router.beforeEach(async (to, from, next) => {
               router.addRoute(route); // 动态添加可访问路由表
             }
           });
-          next({ path: to.path, replace: true, params: to.params, query: to.query, hash: to.hash, name: to.name as string }); // hack方法 确保addRoutes已完成
+          next({
+            path: to.path,
+            replace: true,
+            params: to.params,
+            query: to.query,
+            hash: to.hash,
+            name: to.name as string
+          }); // hack方法 确保addRoutes已完成
         }
       } else {
         next();

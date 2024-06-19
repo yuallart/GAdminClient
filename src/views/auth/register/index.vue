@@ -101,7 +101,7 @@
     </div>
     <!--  底部  -->
     <div class="el-register-footer">
-      <span>Copyright © 2018-2023 疯狂的狮子Li All Rights Reserved.</span>
+      <span>我已阅读并同意&nbsp;<span>用户协议</span>&nbsp;和&nbsp;<span>隐私政策</span></span>
     </div>
   </div>
 </template>
